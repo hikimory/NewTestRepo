@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<languages>
+    <English>
+        <string name="start_button">Start</string>
+        <string name="description">This script provides convenient multiple language support.</string>
+    </English>
+    <Russian>
+        <string name="start_button">Начать</string>
+        <string name="description">Этот скрипт обеспечивает удобную многоязычную поддержку.</string>
+    </Russian>
+</languages>
