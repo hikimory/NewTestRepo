@@ -6,6 +6,13 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class CustomXRDirectInteractor : XRDirectInteractor
 {
+
+    [SerializeField] private Animator _animator = null;
+
+    public Animator GetAnimator {
+        get { return _animator; }
+    }
+
     public void ForceDeselect()
     {
         Debug.Log("Call Force");
@@ -13,4 +20,6 @@ public class CustomXRDirectInteractor : XRDirectInteractor
         base.OnSelectExiting(selectTarget);
         base.OnSelectExited(selectTarget);
     } 
+
+
 }
