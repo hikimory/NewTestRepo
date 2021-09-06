@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,6 +25,7 @@ public class TestRotate : MonoBehaviour
 
     void Solution1()
     {
+        
         Vector3 direction = new Vector3(target.position.x, target.position.y, transform.position.z) - transform.position;
         Debug.DrawRay(transform.position, direction, Color.green);
         // direction.z = transform.position.z;
