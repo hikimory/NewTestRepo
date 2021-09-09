@@ -5,6 +5,8 @@ using UnityEngine;
 public class TestRotate : MonoBehaviour
 {
     public Transform target;
+    public Transform target_1;
+    public Transform target_2;
 
     [SerializeField]
     private float _currentWheelRotation = 0f;
@@ -20,7 +22,7 @@ public class TestRotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Solution1();
+        Solution3();
     }
 
     void Solution1()
@@ -39,5 +41,11 @@ public class TestRotate : MonoBehaviour
         Debug.DrawRay(transform.position, direction, Color.green);
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
         transform.eulerAngles = Vector3.forward * angle;
+    }
+
+    void Solution3()
+    {
+        float angle = Quaternion.Angle(transform.rotation, target.rotation);
+        //Debug.Log("Time.DeltaTime " + Time.deltaTime);
     }
 }
