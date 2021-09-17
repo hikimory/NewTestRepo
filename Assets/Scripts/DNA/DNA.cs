@@ -9,9 +9,9 @@ public class DNA<T>
 
     private Random _random;
     private Func<T> _getRandomGene;
-    Func<float, int> _fitnessFunction;
+    Func<int, float> _fitnessFunction;
 
-    public DNA(int size, Random random, Func<T> getRandomGene, Func<float, int> fitnessFunction, bool shouldInitGenes = true)
+    public DNA(int size, Random random, Func<T> getRandomGene, Func<int, float> fitnessFunction, bool shouldInitGenes = true)
     {
         Genes = new T[size];
         _random = random; 
