@@ -1,12 +1,15 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+using System.ComponentModel.DataAnnotations;
 
 public class TestInterfaceScript : MonoBehaviour
 {
-
-    public List<IMyList> list = new List<IMyList>();
-    public List<GameObject> list2 = new List<GameObject>();
+    private Text text_1;
+    private Text text_2;
+    private Text text_3;
 
     // Start is called before the first frame update
     void Start()

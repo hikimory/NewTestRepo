@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-
+using VR.Toolkit;
 
 public class CustomXRDirectInteractor : XRDirectInteractor
 {
-
     [SerializeField] private Animator _animator = null;
 
     public Animator GetAnimator {
@@ -15,10 +14,14 @@ public class CustomXRDirectInteractor : XRDirectInteractor
 
     public void ForceDeselect()
     {
-        Debug.Log("Call Force");
-        Debug.Log(selectTarget.name + " RELEASE");
-        base.OnSelectExiting(selectTarget);
-        base.OnSelectExited(selectTarget);
+        interactionManager.SelectExit(this, selectTarget);
+    } 
+
+    public void ForceDeselectAndDestroy()
+    {
+        GameObject target = selectTarget.gameObject;
+        interactionManager.SelectExit(this, selectTarget);
+        Destroy(target);
     } 
 
 

@@ -100,9 +100,7 @@ public class ReleaseGrabInteractable : XRGrabInteractable
     {
         if(interactor is CustomXRDirectInteractor intr)
         {
-            OnSelectExiting(interactor);
-            OnSelectExited(interactor);
-            intr.ForceDeselect();
+            intr.ForceDeselectAndDestroy();
         }
     }
 }
