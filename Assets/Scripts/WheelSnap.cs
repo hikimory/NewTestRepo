@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -39,7 +39,7 @@ public class WheelSnap : XRBaseInteractable
     protected override void OnSelectEntering(XRBaseInteractor interactor)
     {
         base.OnSelectEntering(interactor);
-        print(interactor is XRDirectInteractor);
+        
         if (interactor is XRDirectInteractor == false)
             return;
         
@@ -50,7 +50,7 @@ public class WheelSnap : XRBaseInteractable
     protected override void OnSelectExiting(XRBaseInteractor interactor)
     {
         base.OnSelectExiting(interactor);
-        print(interactor is XRDirectInteractor);
+
         if (interactor is XRDirectInteractor == false)
             return;
         

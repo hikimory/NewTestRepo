@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HandController
   - Ground
+  - UI_Tag
   layers:
   - Default
   - TransparentFX
