@@ -29,10 +29,6 @@ public class LocomotionManager : MonoBehaviour
     {
         if(leftTeleportRay)
         {
-             if (leftInteractorRay.TryGetCurrentUIRaycastResult(out var result))
-            {
-                Debug.Log(result.gameObject.name);
-            }
             bool isLeftIneractorRayHovering = leftInteractorRay.TryGetHitInfo(out _pos, out _norm, out _index, out _validTarget);
             leftTeleportRay.gameObject.SetActive(EnableLeftTeleport && CheckIfActivated(leftTeleportRay) && !isLeftIneractorRayHovering );
         }

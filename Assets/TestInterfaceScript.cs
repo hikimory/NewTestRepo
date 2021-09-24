@@ -4,22 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using System.ComponentModel.DataAnnotations;
-
+using VR.Toolkit;
 public class TestInterfaceScript : MonoBehaviour
 {
-    private Text text_1;
-    private Text text_2;
-    private Text text_3;
+    
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        
+       // _state = ScriptableObject.CreateInstance<State>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //StateMachine._instance.Transact();
     }
 }
