@@ -15,4 +15,10 @@ public class InteractUIState : State
         _teleportRay = teleportRay;
         AddTransition(typeof(IdleState));
     }
+    public override void Enter()
+    {
+        base.Enter();
+        _interactorRay.gameObject.SetActive(true);
+        _teleportRay.gameObject.SetActive(false);
+    }
 }

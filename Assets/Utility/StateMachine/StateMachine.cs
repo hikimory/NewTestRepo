@@ -9,61 +9,112 @@ public class StateMachine : MonoBehaviour
 {
     [SerializeField] private XRController _interactorRay;
     [SerializeField] private XRController _teleportRay;
+    [SerializeField] private InputDeviceCharacteristics typeDevice = InputDeviceCharacteristics.None;
+    [SerializeField] private InputHelpers.Button m_teleportButton = InputHelpers.Button.None;
+    
+    private InputDevice _controller;
 
     private IState _currentState = null;
-    private IState _idleState = null;
-    private IState _teleportState = null;
-    private IState _interactUIState = null;
+    private Dictionary<TypeState, IState> _states;
 
-    public InputHelpers.Button teleportActivationButton;
-    public float activationThreshold = 0.1f;
+    private bool isActiveOnUI = false;
+    private bool interactWithUI = false;
+
+    protected void OnEnable()
+    {
+        InputDevices.deviceConnected += RegisterDevices;
+    }
+
+    protected void OnDisable()
+    {
+        InputDevices.deviceConnected -= RegisterDevices;
+    }
+
+    void RegisterDevices(InputDevice connectedDevice)
+    {
+        if (connectedDevice.isValid)
+        {
+            if ((connectedDevice.characteristics & typeDevice) != 0)
+            {
+                _controller = connectedDevice;
+            }
+        }
+    }
+
+    private void Awake()
+    {
+        _states = new Dictionary<TypeState, IState>();
+        _states.Add(TypeState.Idle, new IdleState(_interactorRay, _teleportRay));
+        _states.Add(TypeState.Interact, new InteractUIState(_interactorRay, _teleportRay));
+        _states.Add(TypeState.Teleport, new TeleportState(_interactorRay, _teleportRay));
+    }
 
     private void Start()
     {
-        _idleState = new IdleState(_interactorRay, _teleportRay);
-        _teleportState = new TeleportState(_interactorRay, _teleportRay);
-        _interactUIState = new InteractUIState(_interactorRay, _teleportRay);
-
-        _currentState = _idleState;
+        _currentState = _states[TypeState.Idle];
         _currentState.Enter();
     }
 
-    private void Update()
+    public void Update()
     {
         if (_currentState == null) return;
         _currentState.Update();
 
-        if(CheckIfActivated(_teleportRay) && _currentState.CanTransact(_teleportState))
+        if (_controller.isValid)
         {
-            Transact(_teleportState);
-        }
-
-        if(CheckIfActivated(_teleportRay) == false && _currentState.CanTransact(_idleState))
-        {
-            Transact(_idleState);
-        }
-
-        if(CheckIfActivated(_interactorRay) && _currentState.CanTransact(_interactUIState))
-        {
-            Transact(_interactUIState);
-        }
-
-        if(CheckIfActivated(_interactorRay) == false && _currentState.CanTransact(_idleState))
-        {
-            Transact(_idleState);
+            if (_controller.IsPressed(m_teleportButton, out var value))
+            {
+                if(CanTransact(TypeState.Teleport) && isActiveOnUI == false)
+                {
+                    Transact(TypeState.Teleport);
+                }
+                
+                if(interactWithUI)
+                {
+                    isActiveOnUI = true;
+                }
+            }
+            else if(isActiveOnUI && interactWithUI == false)
+            {
+                isActiveOnUI = false;
+            }
         }
     }
 
-    public void Transact(IState state)
+    public void EnterInteractState()
+    {
+        if (CanTransact(TypeState.Interact))
+        {
+            Transact(TypeState.Interact);
+            interactWithUI = true;
+        }
+    }
+
+    public void ExitInteractState()
+    {
+        interactWithUI = false;
+        if (CanTransact(TypeState.Idle))
+        {
+            Transact(TypeState.Idle);
+        }
+    }
+
+    public bool CanTransact(TypeState state)
+    {
+        return _currentState.CanTransact(_states[state]);
+    }
+
+    public void Transact(TypeState state)
     {
         _currentState.Exit();
-        _currentState = state;
+        _currentState = _states[state];
         _currentState.Enter();
     }
+}
 
-    private bool CheckIfActivated(XRController controller)
-    {
-        InputHelpers.IsPressed(controller.inputDevice, teleportActivationButton, out bool isActivated, activationThreshold);
-        return isActivated;
-    }
+public enum TypeState : uint
+{
+    Idle = 0,
+    Teleport = 1,
+    Interact = 2,
 }

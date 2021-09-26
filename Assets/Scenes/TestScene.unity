@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -370,8 +370,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactorRay: {fileID: 569760221}
   _teleportRay: {fileID: 1974443633}
-  teleportActivationButton: 2
-  activationThreshold: 0.1
+  typeDevice: 512
+  m_teleportButton: 2
 --- !u!114 &16963894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2688,10 +2688,34 @@ MonoBehaviour:
   m_controllerType: 2
   OnHoverEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16963892}
+        m_TargetAssemblyTypeName: StateMachine, Assembly-CSharp
+        m_MethodName: EnterInteractState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHoverExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16963892}
+        m_TargetAssemblyTypeName: StateMachine, Assembly-CSharp
+        m_MethodName: ExitInteractState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &572793485
 GameObject:
   m_ObjectHideFlags: 0
@@ -5819,10 +5843,34 @@ MonoBehaviour:
   m_controllerType: 1
   OnHoverEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1334914185}
+        m_TargetAssemblyTypeName: StateMachine, Assembly-CSharp
+        m_MethodName: EnterInteractState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHoverExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1334914185}
+        m_TargetAssemblyTypeName: StateMachine, Assembly-CSharp
+        m_MethodName: ExitInteractState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1072701379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7782,8 +7830,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactorRay: {fileID: 1071439520}
   _teleportRay: {fileID: 1006769069}
-  teleportActivationButton: 2
-  activationThreshold: 0.1
+  typeDevice: 256
+  m_teleportButton: 2
 --- !u!114 &1334914187
 MonoBehaviour:
   m_ObjectHideFlags: 0

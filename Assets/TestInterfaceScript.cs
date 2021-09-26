@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-using System.ComponentModel.DataAnnotations;
 using VR.Toolkit;
 public class TestInterfaceScript : MonoBehaviour
 {
