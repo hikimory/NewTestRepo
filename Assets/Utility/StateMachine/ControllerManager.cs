@@ -44,26 +44,39 @@ public class ControllerManager : MonoBehaviour
 
     private void Update()
     {
+        m_leftStateMachine.Update();
+        m_rightStateMachine.Update();
         if (_leftController.isValid)
         {
-            if(_leftController.IsPressed(m_teleportButton, out var value))
+            if(_leftController.IsPressed(m_teleportButton, out var activated))
             {
-                if(m_leftStateMachine.CanTransact(TypeState.Teleport))
+                if(activated)
                 {
-                    m_leftStateMachine.Transact(TypeState.Teleport);
+                    if(m_leftStateMachine.CanTransact(TypeState.Teleport) && m_leftStateMachine.isActiveOnUI == false)
+                        m_leftStateMachine.Transact(TypeState.Teleport);
                 }
-
-                //Press trigger
+                else 
+                {
+                    if(m_leftStateMachine.CheckCurrentState(TypeState.Teleport) && m_leftStateMachine.CanTransact(TypeState.Idle))
+                        m_leftStateMachine.Transact(TypeState.Idle);
+                }
+                
             }
         }
 
         if (_rightController.isValid)
         {
-            if (_rightController.IsPressed(m_teleportButton, out var value))
+            if (_rightController.IsPressed(m_teleportButton, out var activated))
             {
-                if (m_rightStateMachine.CanTransact(TypeState.Teleport))
+                if(activated)
                 {
-                    m_rightStateMachine.Transact(TypeState.Teleport);
+                    if (m_rightStateMachine.CanTransact(TypeState.Teleport) && m_rightStateMachine.isActiveOnUI == false)
+                        m_rightStateMachine.Transact(TypeState.Teleport);
+                }
+                else 
+                {
+                    if(m_rightStateMachine.CheckCurrentState(TypeState.Teleport) && m_rightStateMachine.CanTransact(TypeState.Idle))
+                        m_rightStateMachine.Transact(TypeState.Idle);
                 }
             }
         }
