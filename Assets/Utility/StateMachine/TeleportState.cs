@@ -2,11 +2,11 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class TeleportState : State
 {
-    private readonly XRController _interactorRay;
-    private readonly XRController _teleportRay;
+    private readonly InteractorController _interactorRay;
+    private readonly InteractorController _teleportRay;
 
     // Start is called before the first frame update
-    public TeleportState(XRController interactRay, XRController teleportRay)
+    public TeleportState(InteractorController interactRay, InteractorController teleportRay)
     {
         _interactorRay = interactRay;
         _teleportRay = teleportRay;
@@ -16,14 +16,14 @@ public class TeleportState : State
     public override void Enter()
     {
         base.Enter();
-       _teleportRay.gameObject.SetActive(true);
-       _interactorRay.gameObject.SetActive(false);
+       _teleportRay.Show();
+       _interactorRay.Hide();
     }
     public override void Exit()
     {
         base.Exit();
-        _teleportRay.gameObject.SetActive(false);
-        _interactorRay.gameObject.SetActive(true);
+        _teleportRay.Hide();
+        _interactorRay.Hide();
     }
     public override void Update()
     {

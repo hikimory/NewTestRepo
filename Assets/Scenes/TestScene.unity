@@ -320,8 +320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60283acb14c37014badcc7e1799233e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactorRay: {fileID: 569760221}
-  _teleportRay: {fileID: 1974443633}
+  _interactor: {fileID: 569760216}
+  _teleport: {fileID: 1974443628}
   isActiveOnUI: 0
   interactWithUI: 0
 --- !u!114 &16963894
@@ -7756,8 +7756,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60283acb14c37014badcc7e1799233e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactorRay: {fileID: 1071439520}
-  _teleportRay: {fileID: 1006769069}
+  _interactor: {fileID: 1071439515}
+  _teleport: {fileID: 1006769064}
   isActiveOnUI: 0
   interactWithUI: 0
 --- !u!114 &1334914187

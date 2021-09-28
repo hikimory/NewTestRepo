@@ -6,14 +6,14 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class InteractUIState : State
 {
-    private readonly XRController _interactorRay;
-    private readonly XRController _teleportRay;
+    private readonly InteractorController _interactorRay;
+    private readonly InteractorController _teleportRay;
 
     private bool _active = false;
     public bool IsActive {get; private set;} = false;
 
     // Start is called before the first frame update
-    public InteractUIState(XRController interactRay, XRController teleportRay)
+    public InteractUIState(InteractorController interactRay, InteractorController teleportRay)
     {
         _interactorRay = interactRay;
         _teleportRay = teleportRay;
@@ -22,14 +22,14 @@ public class InteractUIState : State
 
     public override void Update() 
     {
-        if(_interactorRay.inputDevice.TryGetFeatureValue(CommonUsages.triggerButton, out _active))
-            IsActive = _active;
+        if(_interactorRay.m_XRController.inputDevice.TryGetFeatureValue(CommonUsages.triggerButton, out _active))
+             IsActive = _active;
     }
 
     public override void Enter()
     {
         base.Enter();
-        _interactorRay.gameObject.SetActive(true);
-        _teleportRay.gameObject.SetActive(false);
+        _interactorRay.Show();
+        _teleportRay.Hide();
     }
 }

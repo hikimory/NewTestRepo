@@ -7,8 +7,8 @@ using UnityEngine.XR;
 
 public class StateMachine : MonoBehaviour
 {
-    [SerializeField] private XRController _interactorRay;
-    [SerializeField] private XRController _teleportRay;
+    [SerializeField] private GameObject _interactor;
+    [SerializeField] private GameObject _teleport;
     // [SerializeField] private InputDeviceCharacteristics typeDevice = InputDeviceCharacteristics.None;
     // [SerializeField] private InputHelpers.Button m_teleportButton = InputHelpers.Button.None;
     
@@ -43,10 +43,15 @@ public class StateMachine : MonoBehaviour
 
     private void Awake()
     {
+        InteractorController teleportController = new InteractorController();
+        teleportController.Attach(_teleport);
+        InteractorController interactController = new InteractorController();
+        interactController.Attach(_interactor);
+        
         _states = new Dictionary<TypeState, IState>();
-        _states.Add(TypeState.Idle, new IdleState(_interactorRay, _teleportRay));
-        _states.Add(TypeState.Interact, new InteractUIState(_interactorRay, _teleportRay));
-        _states.Add(TypeState.Teleport, new TeleportState(_interactorRay, _teleportRay));
+        _states.Add(TypeState.Idle, new IdleState(interactController, teleportController));
+        _states.Add(TypeState.Interact, new InteractUIState(interactController, teleportController));
+        _states.Add(TypeState.Teleport, new TeleportState(interactController, teleportController));
     }
 
     private void Start()
@@ -106,4 +111,57 @@ public enum TypeState : uint
     Idle = 0,
     Teleport = 1,
     Interact = 2,
+}
+
+public struct InteractorController
+{
+    public GameObject m_GO;
+    public XRController m_XRController;
+    public XRInteractorLineVisual m_LineRenderer;
+    public XRBaseInteractor m_Interactor;
+    
+    public void Attach(GameObject gameObject)
+    {
+        m_GO = gameObject;
+        if (m_GO != null)
+        {
+            m_XRController = m_GO.GetComponent<XRController>();
+            m_LineRenderer = m_GO.GetComponent<XRInteractorLineVisual>();
+            m_Interactor = m_GO.GetComponent<XRBaseInteractor>();
+
+            Hide();               
+        }
+    }
+
+    public void Show()
+    {
+        if (m_LineRenderer)
+        {
+            m_LineRenderer.enabled = true;
+        }
+        if (m_XRController)
+        {
+            m_XRController.enableInputActions = true;
+        }
+        if (m_Interactor)
+        {
+            m_Interactor.enabled = true;
+        }
+    }
+
+    public void Hide()
+    {
+        if (m_LineRenderer)
+        {
+            m_LineRenderer.enabled = false;
+        }
+        if (m_XRController)
+        {
+            m_XRController.enableInputActions = false;
+        }
+        if(m_Interactor)
+        {
+            m_Interactor.enabled = false;
+        }
+    }
 }

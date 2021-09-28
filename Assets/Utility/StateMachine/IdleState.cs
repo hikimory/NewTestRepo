@@ -5,12 +5,12 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class IdleState : State
 {
-    private readonly XRController _interactorRay;
-    private readonly XRController _teleportRay;
+    private readonly InteractorController _interactorRay;
+    private readonly InteractorController _teleportRay;
 
-    public IdleState(XRController interactRay, XRController teleportRay)
+    public IdleState(InteractorController interactRay, InteractorController teleportRay)
     {
-         _interactorRay = interactRay;
+        _interactorRay = interactRay;
         _teleportRay = teleportRay;
         AddTransition(typeof(TeleportState));
         AddTransition(typeof(InteractUIState));
@@ -18,12 +18,14 @@ public class IdleState : State
     public override void Enter()
     {
         base.Enter();
-        _teleportRay.gameObject.SetActive(false);
-        _interactorRay.gameObject.SetActive(true);
+        _teleportRay.Hide();
+        _interactorRay.Show();
     }
     public override void Exit()
     {
         base.Exit();
+        _teleportRay.Hide();
+        _interactorRay.Hide();
     }
     public override void Update()
     {
