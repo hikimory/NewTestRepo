@@ -8,13 +8,14 @@ public class InteractUIState : State
 {
     private readonly InteractorController _interactorRay;
     private readonly InteractorController _teleportRay;
+    private readonly StateMachine _machine;
 
-    private bool _active = false;
-    public bool IsActive {get; private set;} = false;
+    private bool _activated;
 
     // Start is called before the first frame update
-    public InteractUIState(InteractorController interactRay, InteractorController teleportRay)
+    public InteractUIState(StateMachine machine, InteractorController interactRay, InteractorController teleportRay)
     {
+        _machine = machine;
         _interactorRay = interactRay;
         _teleportRay = teleportRay;
         AddTransition(typeof(IdleState));
@@ -22,8 +23,9 @@ public class InteractUIState : State
 
     public override void Update() 
     {
-        if(_interactorRay.m_XRController.inputDevice.TryGetFeatureValue(CommonUsages.triggerButton, out _active))
-             IsActive = _active;
+         
+        if(_interactorRay.m_XRController.inputDevice.TryGetFeatureValue(CommonUsages.triggerButton, out _activated))
+             _machine.isActiveOnUI = _activated;
     }
 
     public override void Enter()

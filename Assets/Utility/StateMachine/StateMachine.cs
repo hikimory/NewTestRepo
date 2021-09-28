@@ -49,9 +49,9 @@ public class StateMachine : MonoBehaviour
         interactController.Attach(_interactor);
         
         _states = new Dictionary<TypeState, IState>();
-        _states.Add(TypeState.Idle, new IdleState(interactController, teleportController));
-        _states.Add(TypeState.Interact, new InteractUIState(interactController, teleportController));
-        _states.Add(TypeState.Teleport, new TeleportState(interactController, teleportController));
+        _states.Add(TypeState.Idle, new IdleState(this, interactController, teleportController));
+        _states.Add(TypeState.Interact, new InteractUIState(this, interactController, teleportController));
+        _states.Add(TypeState.Teleport, new TeleportState(this, interactController, teleportController));
     }
 
     private void Start()
@@ -64,8 +64,6 @@ public class StateMachine : MonoBehaviour
     {
         if (_currentState == null) return;
         _currentState.Update();
-        if(CheckCurrentState(TypeState.Interact))
-            isActiveOnUI = (_currentState as InteractUIState).IsActive;
         Debug.Log(_currentState.GetType());
     }
 

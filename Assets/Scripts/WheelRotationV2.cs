@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -105,10 +105,7 @@ public class WheelRotationV2 : MonoBehaviour
             //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
             transform.up = direction;
             _currentWheelRotation = transform.rotation.z;*/
-            Quaternion newRotLeft = Quaternion.Euler(0, 0, _leftSnap.HandParent.rotation.eulerAngles.z);
-            Quaternion newRotRight = Quaternion.Euler(0, 0, _rightSnap.HandParent.rotation.eulerAngles.z);
-            Quaternion finalRot = Quaternion.Slerp(newRotLeft, newRotRight, 0.5f);
-            transform.rotation = finalRot;
+
         }
         else
         {

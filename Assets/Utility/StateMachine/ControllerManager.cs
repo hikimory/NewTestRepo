@@ -44,57 +44,57 @@ public class ControllerManager : MonoBehaviour
 
     private void Update()
     {
-        if (_leftController.isValid)
-        {
-            if(_leftController.IsPressed(m_teleportButton, out var activated))
-            {
-                if(activated)
-                {
-                    if(m_leftStateMachine.isActiveOnUI)
-                        return;
+        // if (_leftController.isValid)
+        // {
+        //     if(_leftController.IsPressed(m_teleportButton, out var activated))
+        //     {
+        //         if(activated)
+        //         {
+        //             if(m_leftStateMachine.isActiveOnUI)
+        //                 return;
 
-                    if (m_rightStateMachine.CheckCurrentState(TypeState.Teleport))
-                        return;
+        //             if (m_rightStateMachine.CheckCurrentState(TypeState.Teleport))
+        //                 return;
 
-                    if(m_leftStateMachine.CanTransact(TypeState.Teleport))
-                        m_leftStateMachine.Transact(TypeState.Teleport);
-                }
-                else 
-                {
-                    if(m_leftStateMachine.isActiveOnUI)
-                        m_leftStateMachine.isActiveOnUI = false;
+        //             if(m_leftStateMachine.CanTransact(TypeState.Teleport))
+        //                 m_leftStateMachine.Transact(TypeState.Teleport);
+        //         }
+        //         else 
+        //         {
+        //             if(m_leftStateMachine.isActiveOnUI)
+        //                 m_leftStateMachine.isActiveOnUI = false;
 
-                    if(m_leftStateMachine.CheckCurrentState(TypeState.Teleport) && m_leftStateMachine.CanTransact(TypeState.Idle))
-                        m_leftStateMachine.Transact(TypeState.Idle);
-                }
+        //             if(m_leftStateMachine.CheckCurrentState(TypeState.Teleport) && m_leftStateMachine.CanTransact(TypeState.Idle))
+        //                 m_leftStateMachine.Transact(TypeState.Idle);
+        //         }
                 
-            }
-        }
+        //     }
+        // }
 
-        if (_rightController.isValid)
-        {
-            if (_rightController.IsPressed(m_teleportButton, out var activated))
-            {
-                if(activated)
-                {
-                    if(m_rightStateMachine.isActiveOnUI)
-                        return;
+        // if (_rightController.isValid)
+        // {
+        //     if (_rightController.IsPressed(m_teleportButton, out var activated))
+        //     {
+        //         if(activated)
+        //         {
+        //             if(m_rightStateMachine.isActiveOnUI)
+        //                 return;
 
-                    if (m_leftStateMachine.CheckCurrentState(TypeState.Teleport))
-                        return;
+        //             if (m_leftStateMachine.CheckCurrentState(TypeState.Teleport))
+        //                 return;
 
-                    if (m_rightStateMachine.CanTransact(TypeState.Teleport))
-                        m_rightStateMachine.Transact(TypeState.Teleport);
-                }
-                else 
-                {
-                    if(m_rightStateMachine.isActiveOnUI)
-                        m_rightStateMachine.isActiveOnUI = false;
+        //             if (m_rightStateMachine.CanTransact(TypeState.Teleport))
+        //                 m_rightStateMachine.Transact(TypeState.Teleport);
+        //         }
+        //         else 
+        //         {
+        //             if(m_rightStateMachine.isActiveOnUI)
+        //                 m_rightStateMachine.isActiveOnUI = false;
 
-                    if(m_rightStateMachine.CheckCurrentState(TypeState.Teleport) && m_rightStateMachine.CanTransact(TypeState.Idle))
-                        m_rightStateMachine.Transact(TypeState.Idle);
-                }
-            }
-        }
+        //             if(m_rightStateMachine.CheckCurrentState(TypeState.Teleport) && m_rightStateMachine.CanTransact(TypeState.Idle))
+        //                 m_rightStateMachine.Transact(TypeState.Idle);
+        //         }
+        //     }
+        // }
     }
 }
