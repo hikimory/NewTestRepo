@@ -59,30 +59,9 @@ public class StateMachine : MonoBehaviour
     {
         if (_currentState == null) return;
         _currentState.Update();
+        if(CheckCurrentState(TypeState.Interact))
+            isActiveOnUI = (_currentState as InteractUIState).IsActive;
         Debug.Log(_currentState.GetType());
-
-        // if (_controller.isValid)
-        // {
-        //     var activated = false;
-        //     if (_controller.IsPressed(m_teleportButton, out var value, 0.1f))
-        //     {
-        //         activated |= value;
-        //         if(activated && CanTransact(TypeState.Teleport) && isActiveOnUI == false)
-        //         {
-        //             Transact(TypeState.Teleport);
-        //         }
-                
-        //         if(interactWithUI)
-        //         {
-        //             Debug.Log("Active on UI");
-        //             isActiveOnUI = true;
-        //         }
-        //     }
-        //     else if(isActiveOnUI && interactWithUI == false)
-        //     {
-        //         isActiveOnUI = false;
-        //     }
-        // }
     }
 
     public void EnterInteractState()
@@ -90,6 +69,7 @@ public class StateMachine : MonoBehaviour
         interactWithUI = true;
         if (CanTransact(TypeState.Interact))
         {
+            Debug.Log("TypeState.Interact");
             Transact(TypeState.Interact);
         }
     }
@@ -101,16 +81,6 @@ public class StateMachine : MonoBehaviour
         {
             Transact(TypeState.Idle);
         }
-    }
-
-    public void ActiveOnUI(SelectEnterEventArgs args)
-    {
-        isActiveOnUI = true;
-    }
-
-    public void InActiveOnUI(SelectExitEventArgs args)
-    {
-        isActiveOnUI = false;
     }
 
     public bool CanTransact(TypeState state)
