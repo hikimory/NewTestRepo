@@ -17,8 +17,8 @@ public class StateMachine : MonoBehaviour
     private IState _currentState = null;
     private Dictionary<TypeState, IState> _states;
 
-    public bool isActiveOnUI = false;
-    public bool interactWithUI = false;
+    public bool isHoverOnUI = false;
+    public bool isInteractOnUI = false;
 
     // protected void OnEnable()
     // {
@@ -69,9 +69,9 @@ public class StateMachine : MonoBehaviour
 
     public void EnterInteractState()
     {
-        interactWithUI = true;
         if (CanTransact(TypeState.Interact))
         {
+            isHoverOnUI = true;
             Debug.Log("TypeState.Interact");
             Transact(TypeState.Interact);
         }
@@ -79,9 +79,9 @@ public class StateMachine : MonoBehaviour
 
     public void ExitInteractState()
     {
-        interactWithUI = false;
         if (CanTransact(TypeState.Idle))
         {
+            isHoverOnUI  = false;
             Transact(TypeState.Idle);
         }
     }
@@ -133,33 +133,27 @@ public struct InteractorController
 
     public void Show()
     {
-        if (m_LineRenderer)
-        {
-            m_LineRenderer.enabled = true;
-        }
-        if (m_XRController)
-        {
-            m_XRController.enableInputActions = true;
-        }
-        if (m_Interactor)
-        {
-            m_Interactor.enabled = true;
-        }
+        SetState(true);
     }
 
     public void Hide()
     {
+        SetState(false);
+    }
+
+    private void SetState(bool state)
+    {
         if (m_LineRenderer)
         {
-            m_LineRenderer.enabled = false;
+            m_LineRenderer.enabled = state;
         }
         if (m_XRController)
         {
-            m_XRController.enableInputActions = false;
+            m_XRController.enableInputActions = state;
         }
-        if(m_Interactor)
+        if (m_Interactor)
         {
-            m_Interactor.enabled = false;
+            m_Interactor.enabled = state;
         }
     }
 }

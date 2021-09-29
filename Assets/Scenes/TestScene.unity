@@ -322,8 +322,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactor: {fileID: 569760216}
   _teleport: {fileID: 1974443628}
-  isActiveOnUI: 0
-  interactWithUI: 0
+  isHoverOnUI: 0
+  isInteractOnUI: 0
 --- !u!114 &16963894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2585,7 +2585,7 @@ MonoBehaviour:
     m_Bits: 32
   m_RaycastTriggerInteraction: 1
   m_HitClosestOnly: 0
-  m_KeepSelectedTargetValid: 1
+  m_KeepSelectedTargetValid: 0
   m_HoverToSelect: 0
   m_HoverTimeToSelect: 0.5
   m_EnableUIInteraction: 1
@@ -5740,7 +5740,7 @@ MonoBehaviour:
     m_Bits: 32
   m_RaycastTriggerInteraction: 1
   m_HitClosestOnly: 0
-  m_KeepSelectedTargetValid: 1
+  m_KeepSelectedTargetValid: 0
   m_HoverToSelect: 0
   m_HoverTimeToSelect: 0.5
   m_EnableUIInteraction: 1
@@ -7758,8 +7758,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactor: {fileID: 1071439515}
   _teleport: {fileID: 1006769064}
-  isActiveOnUI: 0
-  interactWithUI: 0
+  isHoverOnUI: 0
+  isInteractOnUI: 0
 --- !u!114 &1334914187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11142,6 +11142,7 @@ GameObject:
   - component: {fileID: 1974443632}
   - component: {fileID: 1974443631}
   - component: {fileID: 1974443630}
+  - component: {fileID: 1974443634}
   m_Layer: 0
   m_Name: RightTeleportRay
   m_TagString: Untagged
@@ -11504,6 +11505,22 @@ MonoBehaviour:
   m_MoveObjectIn: 14
   m_MoveObjectOut: 15
   m_PoseProvider: {fileID: 0}
+--- !u!114 &1974443634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974443628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf4117be8a15d240a4bebbb9bebca03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_controller: {fileID: 1974443633}
+  m_interactor: {fileID: 1974443632}
+  m_lineVisual: {fileID: 1974443630}
+  m_controllerType: 2
 --- !u!1 &2005656952
 GameObject:
   m_ObjectHideFlags: 0
@@ -11854,6 +11871,7 @@ GameObject:
   - component: {fileID: 2080286740}
   - component: {fileID: 2080286742}
   - component: {fileID: 2080286743}
+  - component: {fileID: 2080286744}
   m_Layer: 10
   m_Name: XR Rig
   m_TagString: Untagged
@@ -12007,7 +12025,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2080286734}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e371e2cb378d314479f9abb32230a2fb, type: 3}
   m_Name: 
@@ -12015,6 +12033,22 @@ MonoBehaviour:
   m_teleportButton: 2
   m_leftStateMachine: {fileID: 1334914185}
   m_rightStateMachine: {fileID: 16963892}
+--- !u!114 &2080286744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080286734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633026e767719314bb5a54e361eee3df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _leftButtons:
+  - m_button: 0
+  _rightButtons:
+  - m_button: 0
 --- !u!1 &2080732366
 GameObject:
   m_ObjectHideFlags: 0

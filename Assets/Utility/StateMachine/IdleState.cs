@@ -21,25 +21,29 @@ public class IdleState : State
     public override void Enter()
     {
         base.Enter();
-        _teleportRay.Hide();
-        _interactorRay.Show();
+        //_teleportRay.Hide();
+        //_interactorRay.Show();
     }
     public override void Exit()
     {
         base.Exit();
-        _teleportRay.Hide();
-        _interactorRay.Hide();
+        //_teleportRay.Hide();
+        //_interactorRay.Hide();
     }
     public override void Update()
     {
         base.Update();
-        bool _activated;
-        if(_interactorRay.m_XRController.inputDevice.TryGetFeatureValue(CommonUsages.triggerButton, out _activated))
+        if(_interactorRay.m_XRController.inputDevice.TryGetFeatureValue(CommonUsages.triggerButton, out var _activated))
         {
             if(_activated)
             {
-                if(_machine.CanTransact(TypeState.Teleport) && _machine.isActiveOnUI == false)
+                if(_machine.CanTransact(TypeState.Teleport) && _machine.isInteractOnUI == false)
                     _machine.Transact(TypeState.Teleport);
+            }
+            else
+            {
+                if(_machine.isInteractOnUI)
+                    _machine.isInteractOnUI = false;
             }
         }
     }
