@@ -11871,7 +11871,6 @@ GameObject:
   - component: {fileID: 2080286740}
   - component: {fileID: 2080286742}
   - component: {fileID: 2080286743}
-  - component: {fileID: 2080286744}
   m_Layer: 10
   m_Name: XR Rig
   m_TagString: Untagged
@@ -12033,22 +12032,6 @@ MonoBehaviour:
   m_teleportButton: 2
   m_leftStateMachine: {fileID: 1334914185}
   m_rightStateMachine: {fileID: 16963892}
---- !u!114 &2080286744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2080286734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 633026e767719314bb5a54e361eee3df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _leftButtons:
-  - m_button: 0
-  _rightButtons:
-  - m_button: 0
 --- !u!1 &2080732366
 GameObject:
   m_ObjectHideFlags: 0

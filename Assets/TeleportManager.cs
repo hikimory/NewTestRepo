@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class TeleportManager : MonoBehaviour
@@ -20,13 +21,22 @@ public class TeleportManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(InputHandler.GetKeyDown(m_controllerType, m_controller, ButtonType.Trigger))
-        {
-            Debug.Log("GetKeyDown Trigger");
-        }
-        if(InputHandler.GetKeyUp(m_controllerType, m_controller, ButtonType.Trigger))
+        if(InputHandler.GetKeyUp(m_controller, CommonUsages.triggerButton))
         {
             Debug.Log("GetKeyUp Trigger");
+            SetStatus(false);
         }
+        if(InputHandler.GetKeyDown(m_controller, CommonUsages.triggerButton))
+        {
+            Debug.Log("GetKeyDown Trigger");
+            SetStatus(true);
+        }
+    }
+
+    private void SetStatus(bool state)
+    {
+        m_lineVisual.enabled = state;
+        m_interactor.allowHover = state;
+        m_interactor.allowSelect = state;
     }
 }
